@@ -36,6 +36,7 @@ let uuid;
 let wsocket=0;
 let mobile;
 let waurl;
+const urlhashcontent = window.location.hash.substring(1);
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     mobile = true;
@@ -54,8 +55,7 @@ function svgqrjsonclick(){
 }
 
 function main() {
-  deleteCookie(tokencookiename);
-  qrController();
+  showQR(urlhashcontent);
 }
 
 
