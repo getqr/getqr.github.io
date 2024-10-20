@@ -108,8 +108,10 @@ function checkCookies() {
 
   if (!qrcontent || !alias) {
       document.getElementById('userModal').style.display = 'flex';
+      console.log("tampilkan modal");
   } else {
       document.getElementById('userModal').style.display = 'none';
+      console.log("sembunyikan modal");
   }
 }
 
