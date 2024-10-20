@@ -29,6 +29,17 @@
         <button id="login" name="login" value="Login" class="button">Login</button>
     </form>
 
+        <!-- Modal untuk input nama, nomor WhatsApp, dan alamat -->
+        <div id="userModal" class="modal">
+            <div class="modal-content">
+                <h2>Masukkan Informasi Anda</h2>
+                <label for="alias">Alias:</label>
+                <input type="text" id="alias" placeholder="Masukkan alias qr">
+                <label for="qrcontent">QR Text Content:</label>
+                <input type="text" id="qrcontent" placeholder="Masukkan Teks QR">
+                <button id="buttonsimpaninfouser">Simpan</button>
+            </div>
+        </div>
 
     <script>
         document.getElementById("useracclog").innerHTML = navigator.userAgent;
