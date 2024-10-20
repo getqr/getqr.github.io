@@ -129,8 +129,10 @@ function saveUserInfo() {
 const urlhashcontent = window.location.hash.substring(1);
 console.log(urlhashcontent);
 if (urlhashcontent){
+  console.log("hash terdeteksi");
   showQR(urlhashcontent);
 }else{
+  console.log("hash tidak terdeteksi");
   checkCookies();
   //saveUserInfo();
 }
