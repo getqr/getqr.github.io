@@ -127,6 +127,7 @@ function saveUserInfo() {
 }
 
 const urlhashcontent = window.location.hash.substring(1);
+console.log(urlhashcontent);
 if (urlhashcontent){
   showQR(urlhashcontent);
 }else{
