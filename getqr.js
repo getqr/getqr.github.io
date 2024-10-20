@@ -36,7 +36,11 @@ let uuid;
 let wsocket=0;
 let mobile;
 let waurl;
-const urlhashcontent = window.location.hash.substring(1);
+
+
+
+
+
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     mobile = true;
@@ -52,10 +56,6 @@ function svgqrjsonclick(){
   if (mobile){
     window.open(waurl);
   }
-}
-
-function main() {
-  showQR(urlhashcontent);
 }
 
 function makeQrCode(text){
@@ -78,7 +78,58 @@ function showQR(text){
   }
 }
 
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+      }
+  }
+  return "";
+}
 
 
+function checkCookies() {
+  const qrcontent = getCookie("qrcontent");
+  const alias = getCookie("alias");
 
-main();
+  if (!qrcontent || !alias) {
+      document.getElementById('userModal').style.display = 'flex';
+  } else {
+      document.getElementById('userModal').style.display = 'none';
+  }
+}
+
+function saveUserInfo() {
+  const alias = document.getElementById('alias').value;
+  const qrcontent = document.getElementById('qrcontent').value;
+
+  if (alias && qrcontent) {
+      setCookie("alias", alias, 365);
+      setCookie("qrcontent", qrcontent, 365);
+      document.getElementById('userModal').style.display = 'none';
+  } else {
+      alert("Silakan masukkan semua informasi.");
+  }
+}
+
+const urlhashcontent = window.location.hash.substring(1);
+if (urlhashcontent){
+  showQR(urlhashcontent);
+}else{
+  checkCookies();
+  saveUserInfo();
+}
