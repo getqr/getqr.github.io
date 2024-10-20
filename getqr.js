@@ -131,5 +131,5 @@ if (urlhashcontent){
   showQR(urlhashcontent);
 }else{
   checkCookies();
-  saveUserInfo();
+  //saveUserInfo();
 }
