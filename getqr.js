@@ -71,4 +71,4 @@ if (urlhashcontent){
 }
 
 onClick('buttonsimpaninfouser',saveUserInfo);
-setInner('useracclog',navigator.userAgent);
+setInner('logs',navigator.userAgent);
