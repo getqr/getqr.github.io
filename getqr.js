@@ -1,37 +1,7 @@
-import {onClick} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js';
+import {onClick,addScriptInHead} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.0/element.js';
+import {getCookie,setCookieWithExpireDay} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.1/cookie.js';
 
 
-let mobile;
-let waurl;
-
-
-
-
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    mobile = true;
-  }else{
-    mobile = false;
-  }
-
-const urlgetparams = new Proxy(new URLSearchParams(window.location.search), {
-  get: (searchParams, prop) => searchParams.get(prop),
-});
-
-function svgqrjsonclick(){
-  if (mobile){
-    window.open(waurl);
-  }
-}
-
-function addScriptInHead(src) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = () => resolve(); // Resolves when script is loaded
-    script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-    document.head.appendChild(script);
-  });
-}
 
 async function makeQrCode(text, id_qr) {
   try {
@@ -59,29 +29,6 @@ function showQR(text){
   }
 }
 
-function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  let expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-      }
-  }
-  return "";
-}
-
 
 function checkCookies() {
   const qrcontent = getCookie("qrcontent");
@@ -101,8 +48,8 @@ function saveUserInfo() {
   const qrcontent = document.getElementById('qrcontent').value;
 
   if (alias && qrcontent) {
-      setCookie("alias", alias, 365);
-      setCookie("qrcontent", qrcontent, 365);
+      setCookieWithExpireDay("alias", alias, 365);
+      setCookieWithExpireDay("qrcontent", qrcontent, 365);
       document.getElementById('userModal').style.display = 'none';
   } else {
       alert("Silakan masukkan semua informasi.");
