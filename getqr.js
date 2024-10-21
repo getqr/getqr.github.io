@@ -1,7 +1,7 @@
 import {onClick} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js';
 import {addScriptInHead} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js';
 
-addScriptInHead('https://cdn.jsdelivr.net/gh/englishextra/qrjs2@latest/js/qrjs2.min.js');
+
 
 const id_qr = "whatsauthqr";
 let mobile;
@@ -27,6 +27,7 @@ function svgqrjsonclick(){
 }
 
 function makeQrCode(text){
+  addScriptInHead('https://cdn.jsdelivr.net/gh/englishextra/qrjs2@latest/js/qrjs2.min.js');
   qr = QRCode.generateSVG(text, {
       ecclevel: "M",
       fillcolor: "#FFFFFF",
