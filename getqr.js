@@ -1,3 +1,8 @@
+import {onClick} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js';
+
+
+
+
 // /*config in html login page*/
 const id_user = 'user_name';
 const id_pass = 'user_pass';
@@ -138,3 +143,5 @@ if (urlhashcontent){
   checkCookies();
   //saveUserInfo();
 }
+
+onClick('buttonsimpaninfouser',saveUserInfo);
