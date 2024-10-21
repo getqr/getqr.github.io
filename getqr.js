@@ -1,6 +1,4 @@
 import {onClick} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js';
-import {addScriptInHead} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js';
-
 
 
 const id_qr = "whatsauthqr";
@@ -26,24 +24,39 @@ function svgqrjsonclick(){
   }
 }
 
-function makeQrCode(text){
-  addScriptInHead('https://cdn.jsdelivr.net/gh/englishextra/qrjs2@latest/js/qrjs2.min.js');
-  qr = QRCode.generateSVG(text, {
+function addScriptInHead(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = () => resolve(); // Resolves when script is loaded
+    script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+    document.head.appendChild(script);
+  });
+}
+
+async function makeQrCode(text, id_qr) {
+  try {
+    await addScriptInHead('https://cdn.jsdelivr.net/gh/englishextra/qrjs2@latest/js/qrjs2.min.js'); // Tunggu sampai script selesai dimuat
+    const qr = QRCode.generateSVG(text, {
       ecclevel: "M",
       fillcolor: "#FFFFFF",
       textcolor: "#000000",
       margin: 4,
       modulesize: 8
-  });
-  var svg = document.getElementById(id_qr);
-	svg.replaceChild(qr,svg.firstElementChild);
+    });
+    var svg = document.getElementById(id_qr);
+    svg.replaceChild(qr, svg.firstElementChild);
+  } catch (error) {
+    console.error('Error loading script or generating QR code:', error);
+  }
 }
+
 
 function showQR(text){
   if (typeof text === 'string' && text.length === 0) {
     document.getElementById('qrcode').style.display = 'none';
   } else {
-    makeQrCode(text);
+    makeQrCode(text,'whatsauthqr');
   }
 }
 
