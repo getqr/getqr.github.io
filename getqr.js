@@ -40,6 +40,7 @@ function checkCookies() {
   } else {
       document.getElementById('userModal').style.display = 'none';
       console.log("sembunyikan modal");
+      showQR(qrcontent);
   }
 }
 
