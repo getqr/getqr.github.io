@@ -42,6 +42,7 @@ function checkCookies() {
       console.log("sembunyikan modal");
       showQR(qrcontent);
       setInner('useracclog',alias);
+      console.log(alias);
   }
 }
 
