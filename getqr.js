@@ -1,5 +1,5 @@
 import {onClick,addScriptInHead} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.0/element.js';
-import {getCookie,setCookieWithExpireDay} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.1/cookie.js';
+import {getCookie,setCookieWithExpireDay} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.2/cookie.js';
 
 
 
