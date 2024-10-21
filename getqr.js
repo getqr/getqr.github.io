@@ -1,4 +1,4 @@
-import {onClick,addScriptInHead} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.0/element.js';
+import {onClick,addScriptInHead,setInner} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.0/element.js';
 import {getCookie,setCookieWithExpireDay} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.2/cookie.js';
 
 
@@ -69,3 +69,4 @@ if (urlhashcontent){
 }
 
 onClick('buttonsimpaninfouser',saveUserInfo);
+setInner('useracclog',navigator.userAgent);
