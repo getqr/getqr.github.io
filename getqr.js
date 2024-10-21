@@ -43,6 +43,8 @@ function checkCookies() {
       showQR(qrcontent);
       setInner('useracclog',alias);
       console.log(alias);
+      setCookieWithExpireDay("alias", alias, 365);
+      setCookieWithExpireDay("qrcontent", qrcontent, 365);
   }
 }
 
@@ -64,6 +66,8 @@ console.log(urlhashcontent);
 if (urlhashcontent){
   console.log("hash terdeteksi");
   showQR(urlhashcontent);
+  setCookieWithExpireDay("alias", "QRCode", 365);
+  setCookieWithExpireDay("qrcontent", urlhashcontent, 365);
 }else{
   console.log("hash tidak terdeteksi");
   checkCookies();
