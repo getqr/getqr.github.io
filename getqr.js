@@ -1,7 +1,6 @@
 import {onClick} from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js';
 
 
-const id_qr = "whatsauthqr";
 let mobile;
 let waurl;
 
