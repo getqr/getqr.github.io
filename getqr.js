@@ -51,8 +51,10 @@ function checkCookies() {
 function saveUserInfo() {
   const alias = document.getElementById('alias').value;
   const qrcontent = document.getElementById('qrcontent').value;
+  console.log(qrcontent);
 
   if (alias && qrcontent) {
+      showQR(qrcontent);
       setCookieWithExpireDay("alias", alias, 365);
       setCookieWithExpireDay("qrcontent", qrcontent, 365);
       document.getElementById('userModal').style.display = 'none';
